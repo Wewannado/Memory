@@ -5,17 +5,24 @@
     android:layout_height="match_parent"
     android:gravity="top|center"
     android:orientation="vertical"
+    android:background="@color/colorTauler"
     tools:context=".controllers.MainActivity">
 
     <TextView
         android:id="@+id/textTimeLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
+        android:gravity="left"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:text="Errors comesos:0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textErrors"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentEnd="true" />
 
     <GridView
         android:id="@+id/gridViewMemory"
@@ -26,5 +33,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textTimeLeft"
         android:choiceMode="singleChoice" />
+
+
 
 </RelativeLayout>
