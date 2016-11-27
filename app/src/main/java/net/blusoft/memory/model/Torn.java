@@ -9,7 +9,7 @@ public class Torn implements Runnable {
     private int cartesGiradesTorn = 0;
     private Carta carta1 = null;
     private Carta carta2 = null;
-    private boolean isActive = true;
+    private boolean bloquejaClicks = false;
     private EstatTorn estat;
 
     private enum EstatTorn {OK, ERROR}
@@ -18,14 +18,22 @@ public class Torn implements Runnable {
         this.tauler = tauler;
     }
 
+    /**
+     * Given one card, it shows it's frontal value, and waits for another card.
+     * When the method is called again with one more card, it checks if the two cards matches.
+     * If they match, hides the two cards. If they don't match, after one second it reverts the two
+     * cards to her back value.
+     *
+     * @param carta The card the users wants to play.
+     */
     public void putCarta(Carta carta) {
-        if (carta.getEstat() == Carta.Estat.BACK && (isActive)) {
+        if (carta.getEstat() == Carta.Estat.BACK && (!bloquejaClicks)) {
             if (cartesGiradesTorn == 0) {
                 carta1 = carta;
                 carta1.girar();
                 cartesGiradesTorn++;
             } else {
-                isActive = false;
+                bloquejar();
                 carta2 = carta;
                 carta2.girar();
                 cartesGiradesTorn = 0;
@@ -54,15 +62,21 @@ public class Torn implements Runnable {
             carta2.girar();
         }
         tauler.refrescarTablero();
-        isActive = true;
+        desbloquejar();
     }
 
-
-    public boolean isActive() {
-        return isActive;
+    /**
+     * Blocks the user clicks in the Gridview.
+     */
+    private void bloquejar() {
+        bloquejaClicks = true;
     }
 
-    public void release() {
-        isActive = true;
+    /**
+     * Unblocks the user clicks in the Gridview
+     */
+    private void desbloquejar() {
+        bloquejaClicks = false;
     }
+
 }

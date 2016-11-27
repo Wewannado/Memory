@@ -3,6 +3,7 @@ package net.blusoft.memory.controllers;
 
 import android.os.CountDownTimer;
 import android.widget.TextView;
+
 import net.blusoft.memory.R;
 
 
@@ -29,7 +30,6 @@ private MainActivity tauler;
     public void onFinish() {
     this.onTick(0);
         textView.setText(R.string.endTime);
-        //AlertDialog.Builder builder = new AlertDialog.Builder(tauler);
         tauler.fiPartida();
     }
 

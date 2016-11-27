@@ -3,6 +3,7 @@ package net.blusoft.memory.model;
 import net.blusoft.memory.R;
 import net.blusoft.memory.controllers.Cronometro;
 import net.blusoft.memory.controllers.MainActivity;
+import net.blusoft.memory.controllers.SelectLevelActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -99,7 +100,24 @@ public class Partida {
     }
 
     public void reiniciarCrono() {
+        //Tot i que tecnicament no el reiniciem, ja que el que fem es reescriure l'objecte
         cronometro = new Cronometro(cronometro.getSecondsLeft() * 1000, 1000, tauler);
         cronometro.start();
+    }
+
+    public int getDificultat() {
+        int result = 0;
+        switch (numeroCartes) {
+            case SelectLevelActivity.CARTES_FACIL:
+                result = 1;
+                break;
+            case SelectLevelActivity.CARTES_MEDIUM:
+                result = 2;
+                break;
+            case SelectLevelActivity.CARTES_HARD:
+                result = 3;
+                break;
+        }
+        return result;
     }
 }

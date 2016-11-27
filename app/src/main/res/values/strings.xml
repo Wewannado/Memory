@@ -3,8 +3,9 @@
     <string name="timeLeft">Temps restant: %1$d</string>
     <string name="endTime">Temps esgotat</string>
     <string name="errors">"Errors comesos: %1$d"</string>
-    <string name="pointMessage">"Fi de la partida. La teva puntuacio ha estat de: %1$d"</string>
+    <string name="pointMessageNoHighScore">"Fi de la partida. La teva puntuacio ha estat de: %1$d"</string>
     <string name="restart">Reiniciar</string>
     <string name="endGameMessageTimeLimit">Fi de la partida. Temps esgotat.</string>
     <string name="exit">Sortir</string>
+    <string name="nueva_puntuaci_n_record_introduce_tu_nombre">Nova puntuació record. Introdueix el teu nom.</string>
 </resources>

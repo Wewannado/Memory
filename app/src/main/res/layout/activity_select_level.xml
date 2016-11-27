@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/colorTauler"
-    tools:context="com.exemple.profedam.memory.controllers.SelectLevelActivity">
+    tools:context=".controllers.SelectLevelActivity">
 
     <LinearLayout
         android:orientation="vertical"

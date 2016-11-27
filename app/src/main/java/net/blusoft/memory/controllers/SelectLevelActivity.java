@@ -1,12 +1,13 @@
 package net.blusoft.memory.controllers;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import net.blusoft.memory.R;
+import net.blusoft.memory.model.DataBase;
 import net.blusoft.memory.model.ObjecteOpcions;
 
 public class SelectLevelActivity extends AppCompatActivity implements View.OnClickListener {
@@ -16,9 +17,9 @@ public class SelectLevelActivity extends AppCompatActivity implements View.OnCli
     private Button hard;
     private Button highScores;
     private ObjecteOpcions opcions = new ObjecteOpcions();
-    final static int CARTES_FACIL = 8;
-    final static int CARTES_MEDIUM = 12;
-    final static int CARTES_HARD = 16;
+    public final static int CARTES_FACIL = 8;
+    public final static int CARTES_MEDIUM = 12;
+    public final static int CARTES_HARD = 16;
     final static int TEMPS_MILLIS_FACIL = 45000;
     final static int TEMPS_MILLIS_MEDIUM = 45000;
     final static int TEMPS_MILLIS_HARD = 60000;
@@ -38,9 +39,11 @@ public class SelectLevelActivity extends AppCompatActivity implements View.OnCli
         medium.setOnClickListener(this);
         hard.setOnClickListener(this);
         highScores.setOnClickListener(this);
-
-
+        DataBase db = new DataBase(this);
+        db.inicializarDB();
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -67,7 +70,8 @@ public class SelectLevelActivity extends AppCompatActivity implements View.OnCli
             System.exit(0);
         }
         if (v.getId() == R.id.highScores) {
-            //Lanzamos la activity de HighScores
+            Intent highScores = new Intent(SelectLevelActivity.this, HighScoresActivity.class);
+            startActivity(highScores);
         }
 
     }
