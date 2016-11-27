@@ -1,19 +1,17 @@
-package com.exemple.profedam.memory.model;
+package net.blusoft.memory.model;
 
-import com.exemple.profedam.memory.R;
-import com.exemple.profedam.memory.controllers.Cronometro;
-import com.exemple.profedam.memory.controllers.MainActivity;
+import net.blusoft.memory.R;
+import net.blusoft.memory.controllers.Cronometro;
+import net.blusoft.memory.controllers.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-/**
- * Created by ALUMNEDAM on 29/01/2016.
- */
+
 public class Partida {
 
-    int totalCartes[] = {
+    private int totalCartes[] = {
             R.drawable.c0, R.drawable.c1,
             R.drawable.c2, R.drawable.c3,
             R.drawable.c4, R.drawable.c5,
@@ -21,40 +19,35 @@ public class Partida {
             R.drawable.c8, R.drawable.c9,
             R.drawable.c10, R.drawable.c11
     };
-    ArrayList<Carta> llistaCartes;
-    int numeroCartes;
-    boolean finalized = false;
-    private int comptadorErrors=0;
-    private static final int NUM_CARTES_BIBLIOTECA=12;
+    private ArrayList<Carta> llistaCartes;
+    private int numeroCartes;
+    private boolean finalized = false;
+    private int comptadorErrors = 0;
+    private static final int NUM_CARTES_BIBLIOTECA = 12;
     private Cronometro cronometro;
-    private ObjecteOpcions opcions;
     private MainActivity tauler;
 
 
-    public Partida(ArrayList<Carta> llistaCartes, int numeroCartes) {
-        this.llistaCartes = llistaCartes;
-        this.numeroCartes = numeroCartes;
-    }
-
     public Partida(ObjecteOpcions opcions, MainActivity tauler) {
-        this.opcions=opcions;
-        this.tauler= tauler;
+        this.tauler = tauler;
         this.numeroCartes = opcions.getNumCartes();
-        llistaCartes = new ArrayList();
-        int[] aleatoris = arrayDesordenat();
-        int pos = 0;
-        for (int contador = 0; contador < getNumeroCartes()/2; contador++) {
-            llistaCartes.add(new Carta(totalCartes[aleatoris[pos]]));
-            llistaCartes.add(new Carta(totalCartes[aleatoris[pos++]]));
-        }
-        Collections.shuffle(llistaCartes);
+        llistaCartes = new ArrayList<>();
+        omplirLlistaCartes();
         cronometro = new Cronometro(opcions.getDificultat(), 1000, tauler);
         cronometro.start();
     }
 
+    private void omplirLlistaCartes() {
+        int[] aleatoris = arrayDesordenat();
+        int pos = 0;
+        for (int contador = 0; contador < getNumeroCartes() / 2; contador++) {
+            llistaCartes.add(new Carta(totalCartes[aleatoris[pos]]));
+            llistaCartes.add(new Carta(totalCartes[aleatoris[pos++]]));
+        }
+        Collections.shuffle(llistaCartes);
+    }
 
-
-    public int[] arrayDesordenat() {
+    private int[] arrayDesordenat() {
         int[] aleatoris = new int[NUM_CARTES_BIBLIOTECA];
         boolean[] aux = new boolean[NUM_CARTES_BIBLIOTECA];
         int num;
@@ -78,36 +71,35 @@ public class Partida {
         return numeroCartes;
     }
 
-    public boolean esFiPartida(){
-        finalized=true;
-        for (Carta carta: llistaCartes) {
-            if(carta.getEstat()!=Carta.Estat.FIXED){
-                finalized=false;
+    public boolean esFiPartida() {
+        finalized = true;
+        for (Carta carta : llistaCartes) {
+            if (carta.getEstat() != Carta.Estat.FIXED) {
+                finalized = false;
                 break;
             }
         }
         return finalized;
     }
 
-    public void sumaError(){
+    public void sumaError() {
         this.comptadorErrors++;
     }
 
-    public int getErrors(){
+    public int getErrors() {
         return comptadorErrors;
     }
 
-    public long getPuntuacio(){
-        long puntuacio=(cronometro.getSecondsLeft()*100-getErrors()*10)*numeroCartes;
-    return puntuacio;
+    public long getPuntuacio() {
+        return (long) ((cronometro.getSecondsLeft() * 100 - getErrors() * 10) * numeroCartes);
     }
 
-    public void pausarCrono(){
+    public void pausarCrono() {
         cronometro.pausar();
     }
 
-    public void reiniciarCrono(){
-        cronometro = new Cronometro(cronometro.getSecondsLeft()*1000, 1000, tauler);
+    public void reiniciarCrono() {
+        cronometro = new Cronometro(cronometro.getSecondsLeft() * 1000, 1000, tauler);
         cronometro.start();
     }
 }

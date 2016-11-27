@@ -1,4 +1,4 @@
-package com.exemple.profedam.memory;
+package net.blusoft.memory;
 
 import org.junit.Test;
 

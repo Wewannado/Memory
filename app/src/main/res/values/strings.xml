@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Memory</string>
+    <string name="timeLeft">Temps restant: %1$d</string>
+    <string name="endTime">Temps esgotat</string>
+    <string name="errors">"Errors comesos: %1$d"</string>
+    <string name="pointMessage">"Fi de la partida. La teva puntuacio ha estat de: %1$d"</string>
+    <string name="restart">Reiniciar</string>
+    <string name="endGameMessageTimeLimit">Fi de la partida. Temps esgotat.</string>
+    <string name="exit">Sortir</string>
 </resources>

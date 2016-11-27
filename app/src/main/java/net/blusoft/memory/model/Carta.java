@@ -1,19 +1,16 @@
-package com.exemple.profedam.memory.model;
+package net.blusoft.memory.model;
 
-import com.exemple.profedam.memory.R;
+import net.blusoft.memory.R;
 
-/**
- * Created by ALUMNEDAM on 29/01/2016.
- */
 public class Carta {
 
-    public enum Estat {BACK, FRONT, FIXED}
+    enum Estat {BACK, FRONT, FIXED}
 
     private final int backImage = R.drawable.back;
     private int frontImage;
     private Estat estat;
 
-    public Carta(int frontImage) {
+    Carta(int frontImage) {
         this.frontImage = frontImage;
         this.estat = Estat.BACK;
     }
@@ -23,7 +20,7 @@ public class Carta {
      *
      * @return the frontImage Resource id
      */
-    public int getFrontImage() {
+    int getFrontImage() {
         return frontImage;
     }
 
@@ -32,14 +29,14 @@ public class Carta {
      *
      * @return 0 for a faced down card (BACK),1 for a faced up card (FRONT), or 2 for a paired card (FIXED)
      */
-    public Estat getEstat() {
+    Estat getEstat() {
         return estat;
     }
 
     /**
      * Switch one card between the FRONT and BACK status.
      */
-    public void girar() {
+    void girar() {
         //GIRA la carta
         switch (estat) {
             case BACK:
@@ -58,7 +55,7 @@ public class Carta {
     /**
      * Sets the STATUS of one card to FIXED, aka the card has been paired.
      */
-    public void bloqueja() {
+    void bloqueja() {
         //FIXA la carta
         estat = Estat.FIXED;
     }

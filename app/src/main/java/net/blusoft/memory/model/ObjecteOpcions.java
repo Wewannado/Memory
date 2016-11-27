@@ -1,10 +1,7 @@
-package com.exemple.profedam.memory.model;
+package net.blusoft.memory.model;
 
 import java.io.Serializable;
 
-/**
- * Created by IES on 20/11/2016.
- */
 
 public class ObjecteOpcions implements Serializable {
     private int numCartes;
@@ -21,11 +18,11 @@ public class ObjecteOpcions implements Serializable {
 
     }
 
-    public int getNumCartes() {
+    int getNumCartes() {
         return numCartes;
     }
 
-    public long getDificultat() {
+    long getDificultat() {
         return dificultat;
     }
 }
